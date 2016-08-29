@@ -8,6 +8,18 @@ module.exports = (window) => {
     var text = grabber.text;
     var obj = grabber.obj;
     var child = grabber.child;
+    console.log({
+        posts: sel("#ul > li > a", [{
+            text: child(0, text()),
+            link: attr("href"),
+            smallText: sel("span", text())
+        }]),
+        data: obj("test1", {
+            data: obj("data", [{
+                val: obj("test5")
+            }])
+        })
+    });
     grabber.observe({
         posts: sel("#ul > li > a", [{
             text: child(0, text()),

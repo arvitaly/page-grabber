@@ -1,7 +1,7 @@
 var electron = require('electron');
 var win;
 var test;
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 50000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
 describe("dom grabber", () => {
     beforeAll((done) => {
         electron.app.on('ready', () => {
