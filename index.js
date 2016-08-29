@@ -19,9 +19,9 @@ var m = function (window) {
                 data = newData;
                 onNewData(data);
             }
-
+            tick();
             if (!grabber.window.MutationObserver) {
-                tick();
+                //TODO
             }
         }
         function tick() {

@@ -20,6 +20,7 @@ module.exports = (window) => {
             }])
         })
     }, (data) => {
+        console.log("send", data);
         ipc.send("data", data);
     })
     ipc.on("f1", () => {

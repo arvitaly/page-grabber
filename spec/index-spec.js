@@ -21,15 +21,14 @@ describe("dom grabber", () => {
             win.openDevTools();
         })
     })
-    it("simple", (done) => {
-
+    it("observe", (done) => {
         setTimeout(() => {
             expect(test).toEqual({ data: { data: [{ val: null }, { val: null }, { val: "hi" }] }, posts: [{ text: "text2", "link": "link3", smallText: "test18" }, { text: "text1", "link": "link5", smallText: null }] });
             win.webContents.send("f1")
             setTimeout(() => {
                 expect(test).toEqual({ data: { data: [{ val: null }, { val: "hi2" }, { val: "hi" }] }, posts: [{ text: "text2", "link": "link3", smallText: "test20" }, { text: "text1", "link": "link5", smallText: null }] });
-                //done();
+                done();
             }, 200)
-        }, 500)
+        }, 200)
     })
 })
