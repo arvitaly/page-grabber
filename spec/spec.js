@@ -2,12 +2,13 @@
 var ipc = require('electron').ipcRenderer;
 module.exports = (window) => {
 
-    var grabber = require('./../index')(window);
-    var sel = grabber.sel;
-    var attr = grabber.attr;
-    var text = grabber.text;
-    var obj = grabber.obj;
-    var child = grabber.child;
+    var Grabber = require('./../index');
+    var grabber = Grabber(window);
+    var sel = Grabber.sel;
+    var attr = Grabber.attr;
+    var text = Grabber.text;
+    var obj = Grabber.obj;
+    var child = Grabber.child;
     console.log({
         posts: sel("#ul > li > a", [{
             text: child(0, text()),

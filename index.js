@@ -60,9 +60,7 @@ var m = function (window) {
             return getSimpleValue(context);
         }
     }
-    grabber.obj = function (path, obj) {
-        return { $$$gp: { m: "_obj", path: path, obj: obj } }
-    }
+
 
     function getSimpleValue(val) {
         if (_.isNil(val)) {
@@ -72,23 +70,17 @@ var m = function (window) {
             return val;
         }
     }
-    grabber.attr = function (name) {
-        return { $$$gp: { m: "_attr", name: name } }
-    }
+
     grabber._attr = function (args, el) {
         var name = args.name;
         return el.getAttribute(name);
     }
-    grabber.text = function () {
-        return { $$$gp: { m: "_text" } }
-    }
+
     grabber._text = function (args, el) {
         return el.innerText === undefined ? (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
     }
 
-    grabber.child = function (index, obj) {
-        return { $$$gp: { m: "_child", index: index, obj: obj } };
-    }
+
     grabber._child = function (args, context) {
         var index = args.index;
         var obj = args.obj;
@@ -97,9 +89,7 @@ var m = function (window) {
         }
         return grab(obj, context.childNodes[index]);
     }
-    grabber.sel = function (selector, obj) {
-        return { $$$gp: { m: "_sel", selector: selector, obj: obj } };
-    }
+
     grabber._sel = function (args, context) {
         var selector = args.selector;
         var obj = args.obj;
@@ -149,5 +139,21 @@ var m = function (window) {
 
 
     return grabber;
+}
+
+m.sel = function (selector, obj) {
+    return { $$$gp: { m: "_sel", selector: selector, obj: obj } };
+}
+m.child = function (index, obj) {
+    return { $$$gp: { m: "_child", index: index, obj: obj } };
+}
+m.text = function () {
+    return { $$$gp: { m: "_text" } }
+}
+m.attr = function (name) {
+    return { $$$gp: { m: "_attr", name: name } }
+}
+m.obj = function (path, obj) {
+    return { $$$gp: { m: "_obj", path: path, obj: obj } }
 }
 module.exports = m;
