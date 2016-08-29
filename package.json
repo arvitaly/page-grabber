@@ -1,0 +1,26 @@
+{
+  "name": "page-grabber",
+  "version": "0.0.1",
+  "description": "Util for grab data from web-page",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1"
+  },
+  "scripts": {
+    "test": "electron test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvitaly/page-grabber.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvitaly/page-grabber/issues"
+  },
+  "homepage": "https://github.com/arvitaly/page-grabber#readme"
+}
