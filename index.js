@@ -24,7 +24,7 @@ var m = function (window) {
                     fields[name].callback = function (data) {
                         fields[name].subscribers.map((cb) => {
                             setTimeout(() => {
-                                cb(data);
+                                cb(JSON.parse(data));
                             })
                         })
                     }
@@ -42,9 +42,10 @@ var m = function (window) {
         var data
         function check() {
             var newData = grab(obj);
-            if (JSON.stringify(data) !== JSON.stringify(newData)) {
+            var j = JSON.stringify(newData)
+            if (JSON.stringify(data) !== j) {
                 data = newData;
-                onNewData(newData);
+                onNewData(j);
             }
             tick();
             if (!grabber.window.MutationObserver) {

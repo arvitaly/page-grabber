@@ -1,6 +1,6 @@
 {
   "name": "page-grabber",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Util for grab data from web-page",
   "main": "index.js",
   "dependencies": {
