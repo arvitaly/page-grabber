@@ -12,17 +12,21 @@ Util for grab data from web-page. Grabber take schema for data and look Window-t
     var obj = grabber.obj; //Set context for JS-object
     var child = grabber.child; //Set context for childNodes by index
     ////////////////////////////////
-    grabber.observe({
+    var model = grabber.model({
         posts: sel("#ul > li > a", [{
             text: child(0, text()),
             link: attr("href"),
             smallText: sel("span", text())
         }]),
-        data: obj("test1", {
+        data1: obj("test1", {
             data: obj("data", [{
                 val: obj("test5")
             }])
         })
-    }, (data) => {
-        console.log("send", data);
     })
+    model.on("posts", (data)=>{
+        console.log("posts", data);
+    })
+    model.on("data1", (data)=>{
+        console.log("data1", data);
+    })    
