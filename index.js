@@ -43,7 +43,12 @@ var m = function (window) {
             var j = JSON.stringify(newData);
             if (JSON.stringify(data) !== j) {
                 data = newData;
-                onNewData(JSON.parse(j));
+
+                setTimeout(() => {
+                    onNewData(JSON.parse(j));
+                })
+
+
             }
             tick();
             if (!grabber.window.MutationObserver) {
@@ -62,7 +67,9 @@ var m = function (window) {
         if (!context) {
             context = grabber.window;
         }
+
         context = _.get(context, path);
+
         if (!context) {
             return null;
         }
