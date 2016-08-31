@@ -44,9 +44,9 @@ var m = function (window) {
             if (JSON.stringify(data) !== j) {
                 data = newData;
 
-                setTimeout(() => {
+                setTimeout(((j) => {
                     onNewData(JSON.parse(j));
-                })
+                }).bind(undefined, j))
 
 
             }
