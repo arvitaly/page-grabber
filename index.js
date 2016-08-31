@@ -10,6 +10,31 @@ var m = function (window) {
         grabber.window = window;
     }
 
+    grabber.model = function (models) {
+        var fields = {};
+        return {
+            on: (name, callback) => {
+                if (!models[name]) {
+                    throw new Error("Unknown model " + name);
+                }
+                if (!fields[name]) {
+                    fields[name] = {
+                        subscribers: [callback]
+                    }
+                    fields[name].callback = function (data) {
+                        fields[name].subscribers.map((cb) => {
+                            cb(data);
+                        })
+                    }
+
+                    grabber.observe(models[name], fields[name].callback)
+                } else {
+                    fields[name].subscribers.push(callback);
+                }
+
+            }
+        }
+    }
 
     grabber.observe = (obj, onNewData) => {
         var data

@@ -28,7 +28,7 @@ describe("dom grabber", () => {
             setTimeout(() => {
                 expect(test).toEqual({ data: { data: [{ val: null }, { val: "hi2" }, { val: "hi" }] }, posts: [{ text: "text2", "link": "link3", smallText: "test20" }, { text: "text1", "link": "link5", smallText: null }] });
                 done();
-            }, 200)
-        }, 200)
+            }, 400)
+        }, 400)
     })
 })
