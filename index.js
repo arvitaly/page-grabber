@@ -40,9 +40,10 @@ var m = function (window) {
         var data
         function check() {
             var newData = grab(obj);
-            if (JSON.stringify(data) !== JSON.stringify(newData)) {
+            var j = JSON.stringify(newData);
+            if (JSON.stringify(data) !== j) {
                 data = newData;
-                onNewData(data);
+                onNewData(JSON.parse(j));
             }
             tick();
             if (!grabber.window.MutationObserver) {
@@ -50,7 +51,7 @@ var m = function (window) {
             }
         }
         function tick() {
-            setTimeout(check, 30);
+            setTimeout(check, 10);
         }
         check();
     };
