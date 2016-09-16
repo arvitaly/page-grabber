@@ -103,7 +103,7 @@ var m = function (window) {
 
     grabber._css = function (args, el) {
         var name = args.name;
-        return el.style[name] || window.getComputedStyle(el)[name];
+        return el.style[name] || grabber.window.getComputedStyle(el)[name];
     }
 
     grabber._attr = function (args, el) {
