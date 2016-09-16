@@ -5,6 +5,8 @@ module.exports = (window) => {
     var Grabber = require('./../index');
     var grabber = Grabber(window);
     var sel = Grabber.sel;
+    var css = Grabber.css;
+    var hasClass = Grabber.hasClass;
     var attr = Grabber.attr;
     var text = Grabber.text;
     var obj = Grabber.obj;
@@ -14,6 +16,8 @@ module.exports = (window) => {
             posts: sel("#ul > li > a", [{
                 text: child(0, text()),
                 link: attr("href"),
+                display: css("display"),
+                active: hasClass("active"),
                 smallText: sel("span", text())
             }]),
             data: obj("test1", {

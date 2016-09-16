@@ -23,10 +23,54 @@ describe("dom grabber", () => {
     })
     it("observe", (done) => {
         setTimeout(() => {
-            expect(test).toEqual({ data: { data: [{ val: null }, { val: null }, { val: "hi" }] }, posts: [{ text: "text2", "link": "link3", smallText: "test18" }, { text: "text1", "link": "link5", smallText: null }] });
+            expect(test).toEqual({
+                data: {
+                    data: [
+                        { val: null },
+                        { val: null },
+                        { val: "hi" }
+                    ]
+                },
+                posts: [
+                    {
+                        text: "text2", "link": "link3",
+                        display: "block",
+                        active: true,
+                        smallText: "test18"
+                    },
+                    {
+                        text: "text1",
+                        "link": "link5",
+                        active: false,
+                        "display": "inline",
+                        smallText: null
+                    }
+                ]
+            });
             win.webContents.send("f1")
             setTimeout(() => {
-                expect(test).toEqual({ data: { data: [{ val: null }, { val: "hi2" }, { val: "hi" }] }, posts: [{ text: "text2", "link": "link3", smallText: "test20" }, { text: "text1", "link": "link5", smallText: null }] });
+                expect(test).toEqual({
+                    data:
+                    {
+                        data:
+                        [
+                            { val: null }, { val: "hi2" }, { val: "hi" }
+                        ]
+                    },
+                    posts: [
+                        {
+                            text: "text2",
+                            display: "block",
+                            active: true,
+                            "link": "link3", smallText: "test20"
+                        },
+                        {
+                            text: "text1",
+                            active: false,
+                            display: "inline",
+                            "link": "link5", smallText: null
+                        }]
+                });
                 done();
             }, 400)
         }, 400)

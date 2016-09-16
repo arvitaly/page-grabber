@@ -1,13 +1,13 @@
 {
   "name": "page-grabber",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Util for grab data from web-page",
   "main": "index.js",
   "dependencies": {
     "lodash": "^4.15.0"
   },
   "devDependencies": {
-    "jasmine": "^2.4.1"
+    "jasmine": "2.4.1"
   },
   "scripts": {
     "test": "electron test.js"

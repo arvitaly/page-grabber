@@ -101,9 +101,18 @@ var m = function (window) {
         }
     }
 
+    grabber._css = function (args, el) {
+        var name = args.name;
+        return el.style[name] || window.getComputedStyle(el)[name];
+    }
+
     grabber._attr = function (args, el) {
         var name = args.name;
         return el.getAttribute(name);
+    }
+    grabber._hasClass = function (args, el) {
+        var name = args.name;
+        return strip(el.getAttribute("class")).indexOf(name) > -1;
     }
 
     grabber._text = function (args, el) {
@@ -183,7 +192,17 @@ m.text = function () {
 m.attr = function (name) {
     return { $$$gp: { m: "_attr", name: name } }
 }
+m.css = function (name) {
+    return { $$$gp: { m: "_css", name: name } }
+}
+m.hasClass = function (name) {
+    return { $$$gp: { m: "_hasClass", name: name } }
+}
 m.obj = function (path, obj) {
     return { $$$gp: { m: "_obj", path: path, obj: obj } }
+}
+function strip(value) {
+    var rhtmlSpace = /[\x20\t\r\n\f]+/g;
+    return (" " + value + " ").replace(rhtmlSpace, " ").slice(1, -1);
 }
 module.exports = m;
