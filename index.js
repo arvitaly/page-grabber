@@ -176,7 +176,7 @@ var m = function (window) {
         return value;
     }
 
-
+    grabber.grab = grab;
     return grabber;
 }
 

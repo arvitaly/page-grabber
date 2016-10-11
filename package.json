@@ -1,8 +1,9 @@
 {
   "name": "page-grabber",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Util for grab data from web-page",
   "main": "index.js",
+  "typings": "typings.d.ts",
   "dependencies": {
     "lodash": "^4.15.0"
   },
