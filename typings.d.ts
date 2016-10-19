@@ -8,7 +8,7 @@ declare namespace PageGrabber {
     export function attr(name: string): GrabberO;
     export function css(name: string): GrabberO;
     export function hasClass(name: string): GrabberO;
-    export function obj(path: string, obj: any): GrabberO;
+    export function obj(path: string, obj?: any): GrabberO;
 }
 declare function PageGrabber(window): {
     observe: (obj: PageGrabber.GrabberO, onNewData: (data: any) => any) => void;
