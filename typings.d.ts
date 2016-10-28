@@ -15,7 +15,7 @@ declare namespace PageGrabber {
 }
 declare function PageGrabber(window): {
     observe: (obj: PageGrabber.GrabberO, onNewData: (data: any) => any, convert?: Function) => void;
-    model: (models: { [index: string]: PageGrabber.GrabberO }, converts: { [index: string]: Function }) => PageGrabber.IModel;
+    model: (models: { [index: string]: PageGrabber.GrabberO }, converts?: { [index: string]: Function }) => PageGrabber.IModel;
     grab: (obj: PageGrabber.GrabberO, el: any) => any;
 }
 export = PageGrabber;
