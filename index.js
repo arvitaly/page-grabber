@@ -10,8 +10,9 @@ var m = function (window) {
         grabber.window = window;
     }
 
-    grabber.model = function (models) {
+    grabber.model = function (models, converts) {
         var fields = {};
+        converts = converts || {};
         return {
             on: (name, callback) => {
                 if (!models[name]) {
@@ -29,7 +30,7 @@ var m = function (window) {
                         })
                     }
 
-                    grabber.observe(models[name], fields[name].callback)
+                    grabber.observe(models[name], fields[name].callback, converts[name])
                 } else {
                     fields[name].subscribers.push(callback);
                 }
@@ -38,10 +39,13 @@ var m = function (window) {
         }
     }
 
-    grabber.observe = (obj, onNewData) => {
+    grabber.observe = (obj, onNewData, convert) => {
         var data
         function check() {
             var newData = grab(obj);
+            if (convert) {
+                newData = convert(newData);
+            }
             var j = JSON.stringify(newData)
             if (JSON.stringify(data) !== j) {
                 data = newData;

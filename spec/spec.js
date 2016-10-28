@@ -26,7 +26,12 @@ module.exports = (window) => {
                 }])
             })
         }
-    })
+    }, {
+            data1: function (data) {
+                data.data.data[2].val = data.data.data[2].val + "hiconvert";
+                return data;
+            }
+        })
     model.on("data1", (data) => {
         console.log("send", data);
         ipc.send("data", data);

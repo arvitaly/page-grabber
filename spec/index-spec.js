@@ -28,7 +28,7 @@ describe("dom grabber", () => {
                     data: [
                         { val: null },
                         { val: null },
-                        { val: "hi" }
+                        { val: "hihiconvert" }
                     ]
                 },
                 posts: [
@@ -54,7 +54,7 @@ describe("dom grabber", () => {
                     {
                         data:
                         [
-                            { val: null }, { val: "hi2" }, { val: "hi" }
+                            { val: null }, { val: "hi2" }, { val: "hihiconvert" }
                         ]
                     },
                     posts: [
