@@ -8,6 +8,7 @@ declare namespace PageGrabber {
     export function sel(selector, obj): GrabberO;
     export function child(index: number, el): GrabberO;
     export function text(): GrabberO;
+    export function val(): GrabberO;
     export function attr(name: string): GrabberO;
     export function css(name: string): GrabberO;
     export function hasClass(name: string): GrabberO;

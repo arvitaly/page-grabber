@@ -11,6 +11,7 @@ module.exports = (window) => {
     var text = Grabber.text;
     var obj = Grabber.obj;
     var child = Grabber.child;
+    var val = Grabber.val;
     var model = grabber.model({
         data1: {
             posts: sel("#ul > li > a", [{
@@ -18,7 +19,8 @@ module.exports = (window) => {
                 link: attr("href"),
                 display: css("display"),
                 active: hasClass("active"),
-                smallText: sel("span", text())
+                smallText: sel("span", text()),
+                inputValue: sel("input", val())
             }]),
             data: obj("test1", {
                 data: obj("data", [{

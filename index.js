@@ -110,6 +110,9 @@ var m = function (window) {
         return el.style[name] || grabber.window.getComputedStyle(el)[name];
     }
 
+    grabber._val = function (args, el) {
+        return el.value;
+    }
     grabber._attr = function (args, el) {
         var name = args.name;
         return el.getAttribute(name);
@@ -195,6 +198,9 @@ m.text = function () {
 }
 m.attr = function (name) {
     return { $$$gp: { m: "_attr", name: name } }
+}
+m.val = function () {
+    return { $$$gp: { m: "_val" } }
 }
 m.css = function (name) {
     return { $$$gp: { m: "_css", name: name } }

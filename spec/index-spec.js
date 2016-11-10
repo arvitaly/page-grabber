@@ -36,14 +36,16 @@ describe("dom grabber", () => {
                         text: "text2", "link": "link3",
                         display: "block",
                         active: true,
-                        smallText: "test18"
+                        smallText: "test18",
+                        inputValue: null
                     },
                     {
                         text: "text1",
                         "link": "link5",
                         active: false,
                         "display": "inline",
-                        smallText: null
+                        smallText: null,
+                        inputValue: "inpval1"
                     }
                 ]
             });
@@ -62,13 +64,17 @@ describe("dom grabber", () => {
                             text: "text2",
                             display: "block",
                             active: true,
-                            "link": "link3", smallText: "test20"
+                            "link": "link3",
+                            smallText: "test20",
+                            inputValue: null
                         },
                         {
                             text: "text1",
                             active: false,
                             display: "inline",
-                            "link": "link5", smallText: null
+                            "link": "link5",
+                            smallText: null,
+                            inputValue: "inpval1"
                         }]
                 });
                 done();
