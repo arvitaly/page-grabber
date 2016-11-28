@@ -49,7 +49,7 @@ var m = function (window) {
             var j = JSON.stringify(newData)
             if (JSON.stringify(data) !== j) {
                 data = newData;
-                onNewData(j);
+                onNewData(data);
             }
             tick();
             if (!grabber.window.MutationObserver) {
