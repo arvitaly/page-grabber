@@ -1,4 +1,6 @@
 # page-grabber [![Build Status](https://travis-ci.org/arvitaly/page-grabber.svg?branch=master)](https://travis-ci.org/arvitaly/page-grabber)
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/arvitaly/page-grabber.svg)](https://greenkeeper.io/)
 Util for grab data from web-page. Grabber take schema for data and look Window-tree by it. 
 
 # Example observe
