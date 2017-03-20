@@ -3,10 +3,10 @@ declare namespace PageGrabber {
 
     }
     interface IModel {
-        on: (name, cb: (data: any) => any) => void
+        on: (name: string, cb: (data: any) => any) => void
     }
-    export function sel(selector, obj): GrabberO;
-    export function child(index: number, el): GrabberO;
+    export function sel(selector: string, obj: any): GrabberO;
+    export function child(index: number, el: any): GrabberO;
     export function text(): GrabberO;
     export function val(): GrabberO;
     export function attr(name: string): GrabberO;
@@ -14,7 +14,7 @@ declare namespace PageGrabber {
     export function hasClass(name: string): GrabberO;
     export function obj(path: string, obj?: any): GrabberO;
 }
-declare function PageGrabber(window): {
+declare function PageGrabber(window: Window): {
     observe: (obj: PageGrabber.GrabberO, onNewData: (data: any) => any, convert?: Function) => void;
     model: (models: { [index: string]: PageGrabber.GrabberO }, converts?: { [index: string]: Function }) => PageGrabber.IModel;
     grab: (obj: PageGrabber.GrabberO, el: any) => any;

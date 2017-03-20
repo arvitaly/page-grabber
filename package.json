@@ -11,7 +11,7 @@
     "jasmine": "2.5.3"
   },
   "scripts": {
-    "test": "electron test.js"
+    "test": "tsc && electron test.js"
   },
   "repository": {
     "type": "git",
