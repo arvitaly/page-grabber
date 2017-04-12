@@ -8,6 +8,7 @@
     "lodash": "^4.15.0"
   },
   "devDependencies": {
+    "@types/node": "^7.0.12",
     "jasmine": "2.5.3",
     "typescript": "^2.2.1"
   },
