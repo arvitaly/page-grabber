@@ -10,6 +10,7 @@ declare namespace PageGrabber {
     export function sel<T extends string>(selector: string, obj: T): T;
     export function child(index: number, el: any): GrabberO;
     export function text(): string;
+    export function html(): string;
     export function val(): string;
     export function attr(name: string): string;
     export function css(name: string): string;

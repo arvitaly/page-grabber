@@ -125,6 +125,9 @@ var m = function (window) {
     grabber._text = function (args, el) {
         return el.innerText === undefined ? (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
     }
+    grabber._html = function (args, el) {
+        return el.innerHTML;
+    }
 
 
     grabber._child = function (args, context) {
@@ -195,6 +198,9 @@ m.child = function (index, obj) {
 }
 m.text = function () {
     return { $$$gp: { m: "_text" } }
+}
+m.text = function () {
+    return { $$$gp: { m: "_html" } }
 }
 m.attr = function (name) {
     return { $$$gp: { m: "_attr", name: name } }
