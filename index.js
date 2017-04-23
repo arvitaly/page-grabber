@@ -199,7 +199,7 @@ m.child = function (index, obj) {
 m.text = function () {
     return { $$$gp: { m: "_text" } }
 }
-m.text = function () {
+m.html = function () {
     return { $$$gp: { m: "_html" } }
 }
 m.attr = function (name) {
