@@ -149,7 +149,6 @@ var m = function (window) {
         }
         if (_.isArray(obj)) {
             var values = [];
-            console.log(Sizzle, grabber.$);
             var els = grabber.$(selector, context);// context.querySelectorAll(selector);
             for (var i = 0; i < els.length; i++) {
                 values.push(grab(obj[0], els[i]))
