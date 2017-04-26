@@ -1,3 +1,4 @@
+const Sizzle = require("./sizzle");
 var _ = require('lodash');
 
 var m = function (window) {
@@ -9,6 +10,7 @@ var m = function (window) {
     } else {
         grabber.window = window;
     }
+    grabber.$ = Sizzle(grabber.window);
 
     grabber.model = function (models, converts) {
         var fields = {};
@@ -147,14 +149,14 @@ var m = function (window) {
         }
         if (_.isArray(obj)) {
             var values = [];
-
-            var els = context.querySelectorAll(selector);
+            console.log(Sizzle, grabber.$);
+            var els = grabber.$(selector, context);// context.querySelectorAll(selector);
             for (var i = 0; i < els.length; i++) {
                 values.push(grab(obj[0], els[i]))
             }
             return values;
         } else {
-            var el = context.querySelector(selector);
+            var el = grabber.$(selector, context)[0]; // context.querySelector(selector);
             if (!el) {
                 return null;
             }
