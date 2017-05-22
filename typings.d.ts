@@ -16,6 +16,8 @@ declare namespace PageGrabber {
     export function css(name: string): string;
     export function hasClass(name: string): boolean;
     export function obj<T extends { [index: string]: any }>(path: string, obj?: T): T;
+    export function obj<T extends Array<{ [index: string]: any }>>(path: string, obj?: T): T;
+    export function obj(path: string): any;
 }
 declare function PageGrabber(window: Window): {
     observe: (obj: PageGrabber.GrabberO, onNewData: (data: any) => any, convert?: Function) => void;
