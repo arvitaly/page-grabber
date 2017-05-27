@@ -16,7 +16,7 @@ var m = function (window) {
         var fields = {};
         converts = converts || {};
         return {
-            on: (name, callback) => {
+            on: function (name, callback) {
                 if (!models[name]) {
                     throw new Error("Unknown model " + name);
                 }
@@ -25,8 +25,8 @@ var m = function (window) {
                         subscribers: [callback]
                     }
                     fields[name].callback = function (data) {
-                        fields[name].subscribers.map((cb) => {
-                            setTimeout(() => {
+                        fields[name].subscribers.map(function (cb) {
+                            setTimeout(function () {
                                 cb(data);
                             })
                         })
@@ -41,7 +41,7 @@ var m = function (window) {
         }
     }
 
-    grabber.observe = (obj, onNewData, convert) => {
+    grabber.observe = function (obj, onNewData, convert) {
         var data
         function check() {
             var newData = grab(obj);
@@ -79,11 +79,11 @@ var m = function (window) {
         if (_.isArray(obj)) {
             if (_.isArray(context)) {
                 if (obj.length > 0) {
-                    return context.map((value) => {
+                    return context.map(function (value) {
                         return grab(obj[0], value);
                     })
                 } else {
-                    return context.map((value) => {
+                    return context.map(function (value) {
                         return getSimpleValue(value);
                     })
                 }
