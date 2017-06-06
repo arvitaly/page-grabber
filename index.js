@@ -1,5 +1,6 @@
 const Sizzle = require("./sizzle");
 var _ = require('lodash');
+var funcs = require('./funcs');
 
 var m = function (window) {
     var grabber = {
@@ -190,34 +191,10 @@ var m = function (window) {
     grabber.grab = grab;
     return grabber;
 }
+for(var funcName in funcs){
+    m[funcName] = funcs[funcName];
+}
 
-m.sel = function (selector, obj) {
-    return { $$$gp: { m: "_sel", selector: selector, obj: obj } };
-}
-m.child = function (index, obj) {
-    return { $$$gp: { m: "_child", index: index, obj: obj } };
-}
-m.text = function () {
-    return { $$$gp: { m: "_text" } }
-}
-m.html = function () {
-    return { $$$gp: { m: "_html" } }
-}
-m.attr = function (name) {
-    return { $$$gp: { m: "_attr", name: name } }
-}
-m.val = function () {
-    return { $$$gp: { m: "_val" } }
-}
-m.css = function (name) {
-    return { $$$gp: { m: "_css", name: name } }
-}
-m.hasClass = function (name) {
-    return { $$$gp: { m: "_hasClass", name: name } }
-}
-m.obj = function (path, obj) {
-    return { $$$gp: { m: "_obj", path: path, obj: obj } }
-}
 function strip(value) {
     var rhtmlSpace = /[\x20\t\r\n\f]+/g;
     return (" " + value + " ").replace(rhtmlSpace, " ").slice(1, -1);
