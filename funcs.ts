@@ -1,27 +1,66 @@
-export function sel(selector: string, obj: any) {
+export const sel: sel = (selector: string, obj: any) => {
     return { $$$gp: { m: "_sel", selector, obj } };
 }
-export function child(index: any, obj: any) {
+export const child: child = (index: any, obj: any) => {
     return { $$$gp: { m: "_child", index, obj } };
 }
-export function text() {
-    return { $$$gp: { m: "_text" } };
+export const text: text = () => {
+    return { $$$gp: { m: "_text" } } as any;
 }
-export function html() {
-    return { $$$gp: { m: "_html" } };
+export const html: html = () => {
+    return { $$$gp: { m: "_html" } } as any;
 }
-export function attr(name: string) {
-    return { $$$gp: { m: "_attr", name } };
+export const attr: attr = (name: string) => {
+    return { $$$gp: { m: "_attr", name } } as any;
 }
-export function val() {
-    return { $$$gp: { m: "_val" } };
+export const val: val = () => {
+    return { $$$gp: { m: "_val" } } as any;
 }
-export function css(name: string) {
-    return { $$$gp: { m: "_css", name } };
+export const css: css = (name: string) => {
+    return { $$$gp: { m: "_css", name } } as any;
 }
-export function hasClass(name: string) {
-    return { $$$gp: { m: "_hasClass", name } };
+export const hasClass: hasClass = (name: string) => {
+    return { $$$gp: { m: "_hasClass", name } } as any;
 }
-export function obj(path: string, obj: any) {
-    return { $$$gp: { m: "_obj", path, obj } };
-}
+export const obj: obj = ((path: string, obj: any) => {
+    return { $$$gp: { m: "_obj", path, obj } } as any;
+}) as any;
+interface sel {
+    <T extends { [index: string]: any }>(selector: string, obj: T): T | null
+};
+interface sel {
+    <T extends Array<{ [index: string]: any }>>(selector: string, obj: T): T
+};
+interface sel {
+    <T extends string>(selector: string, obj: T): T | null
+};
+interface child {
+    (index: number, el: any): any
+};
+interface text {
+    (): string
+};
+interface html {
+    (): string
+};
+interface val {
+    (): string
+};
+interface attr {
+    (name: string): string
+};
+interface css {
+    (name: string): string
+};
+interface hasClass {
+    (name: string): boolean
+};
+interface obj {
+    <T extends { [index: string]: any }>(path: string, obj: T): T
+};
+interface obj {
+    <T extends Array<{ [index: string]: any }>>(path: string, obj: T): T
+};
+interface obj {
+    (path: string): any
+};
