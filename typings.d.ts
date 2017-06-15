@@ -18,6 +18,9 @@ declare namespace PageGrabber {
     export function obj<T extends { [index: string]: any }>(path: string, obj: T): T;
     export function obj<T extends Array<{ [index: string]: any }>>(path: string, obj: T): T;
     export function obj(path: string): any;
+    type ObjType = { [index: string]: any } | Array<{ [index: string]: any }> | string | null;
+    type NextUntil = <T extends ObjType>(startSelector: string, stopSelector: string, selector: string, obj: T) => T | null;
+    export const nextUntil: NextUntil;
 }
 declare function PageGrabber(window: Window): {
     observe: (obj: PageGrabber.GrabberO, onNewData: (data: any) => any, convert?: Function) => void;

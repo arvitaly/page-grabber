@@ -14,3 +14,10 @@ var x4 = typings_1.sel("x", typings_1.text());
 if (x4) {
     x4.charAt(0);
 }
+var x5 = typings_1.nextUntil("selector", "selector2", ".dub", typings_1.sel(".actorInfo .name>a", [{
+        href: typings_1.attr("href"),
+        text: typings_1.text(),
+    }]));
+if (x5) {
+    x5[0].href.toLocaleLowerCase();
+}

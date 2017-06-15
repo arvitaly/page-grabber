@@ -169,26 +169,26 @@ var m = function (window) {
         if (!context) {
             context = grabber.window.document;
         }
-        var allEls = grabber.$(startSelector + " ~ " +  args.selector, context);
-        var stopEl = grabber.$(startSelector + " ~ " + args.stopSelector, context)[0];
-        if (stopEl) {
-            var stopNum = 0;
-            for(var i = 0; i< allEls.length; i++){
-                if (allEls[i] === stopEl) {
-                    stopNum = i;
-                    break;
-                }
-            }
-            allEls.splice(stopNum);
+        var nextEl = grabber.$(startSelector)[0];
+        if (!nextEl) {
+            return null;
         }
-        var els = allEls;
+        var stopEl = grabber.$(startSelector + " ~ " + args.stopSelector, context)[0];
+        var allEls = [];
+        while (nextEl = nextEl.nextSibling) {
+            if (stopEl === nextEl){
+                break;
+            }
+            allEls.push(nextEl);
+        }
+        els = grabber.$(startSelector + " ~ " + args.selector, context, null, allEls );
         if (_.isArray(obj)) {
             var values = [];
             for (var i = 0; i < els.length; i++) {
                 values.push(grab(obj[0], els[i]))
             }
-            return values;            
-        }else{
+            return values;
+        } else {
             var el = els[0];
             if (!el) {
                 return null;

@@ -28,8 +28,8 @@ export const nextUntil: NextUntil = (startSelector: string, stopSelector: string
 export const obj: Obj = ((path: string, o: any) => {
     return { $$$gp: { m: "_obj", path, obj: o } } as any;
 }) as any;
-type ObjType = { [index: string]: any } | Array<{ [index: string]: any }> | string;
-type NextUntil = <T extends Obj>(startSelector: string, stopSelector: string, selector: string, obj: T) => T | null;
+type ObjType = { [index: string]: any } | Array<{ [index: string]: any }> | string | null;
+type NextUntil = <T extends ObjType>(startSelector: string, stopSelector: string, selector: string, obj: T) => T | null;
 type Sel = <T extends ObjType>(selector: string, obj: T) => T | null;
 type Child = (index: number, el: any) => any;
 type Text = () => string;
