@@ -1,6 +1,6 @@
 {
   "name": "page-grabber",
-  "version": "0.3.22",
+  "version": "0.3.23",
   "description": "Util for grab data from web-page",
   "main": "index.js",
   "typings": "typings.d.ts",
