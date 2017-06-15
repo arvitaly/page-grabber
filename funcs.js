@@ -24,6 +24,9 @@ exports.css = function (name) {
 exports.hasClass = function (name) {
     return { $$$gp: { m: "_hasClass", name: name } };
 };
+exports.nextUntil = function (startSelector, stopSelector, selector, obj) {
+    return { $$$gp: { m: "_nextUntil", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: obj } };
+};
 exports.obj = (function (path, obj) {
     return { $$$gp: { m: "_obj", path: path, obj: obj } };
 });

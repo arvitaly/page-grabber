@@ -22,9 +22,16 @@ export const css: css = (name: string) => {
 export const hasClass: hasClass = (name: string) => {
     return { $$$gp: { m: "_hasClass", name } } as any;
 }
+export const nextUntil: nextUntil = (startSelector: string, stopSelector: string, selector: string, obj: any) => {
+    return { $$$gp: { m: "_nextUntil", startSelector, stopSelector, selector, obj } } as any;
+}
 export const obj: obj = ((path: string, obj: any) => {
     return { $$$gp: { m: "_obj", path, obj } } as any;
 }) as any;
+type Obj = { [index: string]: any } | Array<{ [index: string]: any }> | string;
+interface nextUntil {
+    <T extends Obj>(startSelector: string, stopSelector: string, selector: string, obj: T): T | null
+}
 interface sel {
     <T extends { [index: string]: any }>(selector: string, obj: T): T | null
 };

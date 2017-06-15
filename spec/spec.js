@@ -12,6 +12,7 @@ module.exports = (window) => {
     var obj = Grabber.obj;
     var child = Grabber.child;
     var val = Grabber.val;
+    var nextUntil = Grabber.nextUntil;
     var model = grabber.model({
         data1: {
             posts: sel("#ul > li > a", [{
@@ -26,7 +27,8 @@ module.exports = (window) => {
                 data: obj("data", [{
                     val: obj("test5")
                 }])
-            })
+            }),
+            untils: nextUntil("#x2", "[id]", "div", [text()])
         }
     }, {
             data1: function (data) {

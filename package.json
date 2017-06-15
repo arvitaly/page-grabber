@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/node": "^7.0.12",
     "jasmine": "2.5.3",
-    "typescript": "^2.2.1"
+    "typescript": "^2.3.4"
   },
   "scripts": {
     "test": "tsc && electron test.js"

@@ -31,6 +31,7 @@ describe("dom grabber", () => {
                         { val: "hihiconvert" }
                     ]
                 },
+                untils:["value21","value22"],
                 posts: [
                     {
                         text: "text2", "link": "link3",
@@ -59,6 +60,7 @@ describe("dom grabber", () => {
                             { val: null }, { val: "hi2" }, { val: "hihiconvert" }
                         ]
                     },
+                    untils:["value21","value22"],
                     posts: [
                         {
                             text: "text2",
