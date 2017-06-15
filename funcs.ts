@@ -1,73 +1,41 @@
-export const sel: sel = (selector: string, obj: any) => {
+export const sel: Sel = (selector: string, obj: any) => {
     return { $$$gp: { m: "_sel", selector, obj } };
-}
-export const child: child = (index: any, obj: any) => {
+};
+export const child: Child = (index: any, obj: any) => {
     return { $$$gp: { m: "_child", index, obj } };
-}
-export const text: text = () => {
+};
+export const text: Text = () => {
     return { $$$gp: { m: "_text" } } as any;
-}
-export const html: html = () => {
+};
+export const html: Html = () => {
     return { $$$gp: { m: "_html" } } as any;
-}
-export const attr: attr = (name: string) => {
+};
+export const attr: Attr = (name: string) => {
     return { $$$gp: { m: "_attr", name } } as any;
-}
-export const val: val = () => {
+};
+export const val: Val = () => {
     return { $$$gp: { m: "_val" } } as any;
-}
-export const css: css = (name: string) => {
+};
+export const css: Css = (name: string) => {
     return { $$$gp: { m: "_css", name } } as any;
-}
-export const hasClass: hasClass = (name: string) => {
+};
+export const hasClass: HasClass = (name: string) => {
     return { $$$gp: { m: "_hasClass", name } } as any;
-}
-export const nextUntil: nextUntil = (startSelector: string, stopSelector: string, selector: string, obj: any) => {
+};
+export const nextUntil: NextUntil = (startSelector: string, stopSelector: string, selector: string, obj: any) => {
     return { $$$gp: { m: "_nextUntil", startSelector, stopSelector, selector, obj } } as any;
-}
-export const obj: obj = ((path: string, obj: any) => {
-    return { $$$gp: { m: "_obj", path, obj } } as any;
+};
+export const obj: Obj = ((path: string, o: any) => {
+    return { $$$gp: { m: "_obj", path, obj: o } } as any;
 }) as any;
-type Obj = { [index: string]: any } | Array<{ [index: string]: any }> | string;
-interface nextUntil {
-    <T extends Obj>(startSelector: string, stopSelector: string, selector: string, obj: T): T | null
-}
-interface sel {
-    <T extends { [index: string]: any }>(selector: string, obj: T): T | null
-};
-interface sel {
-    <T extends Array<{ [index: string]: any }>>(selector: string, obj: T): T
-};
-interface sel {
-    <T extends string>(selector: string, obj: T): T | null
-};
-interface child {
-    (index: number, el: any): any
-};
-interface text {
-    (): string
-};
-interface html {
-    (): string
-};
-interface val {
-    (): string
-};
-interface attr {
-    (name: string): string
-};
-interface css {
-    (name: string): string
-};
-interface hasClass {
-    (name: string): boolean
-};
-interface obj {
-    <T extends { [index: string]: any }>(path: string, obj: T): T
-};
-interface obj {
-    <T extends Array<{ [index: string]: any }>>(path: string, obj: T): T
-};
-interface obj {
-    (path: string): any
-};
+type ObjType = { [index: string]: any } | Array<{ [index: string]: any }> | string;
+type NextUntil = <T extends Obj>(startSelector: string, stopSelector: string, selector: string, obj: T) => T | null;
+type Sel = <T extends ObjType>(selector: string, obj: T) => T | null;
+type Child = (index: number, el: any) => any;
+type Text = () => string;
+type Html = () => string;
+type Val = () => string;
+type Attr = (name: string) => string;
+type Css = (name: string) => string;
+type HasClass = (name: string) => boolean;
+type Obj = <T extends ObjType>(path: string, obj: T) => T | ((path: string) => any);

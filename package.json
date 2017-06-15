@@ -5,7 +5,8 @@
   "main": "index.js",
   "typings": "typings.d.ts",
   "dependencies": {
-    "lodash": "^4.15.0"
+    "lodash": "^4.15.0",
+    "tslint": "^5.4.3"
   },
   "devDependencies": {
     "@types/node": "^7.0.12",
@@ -13,7 +14,7 @@
     "typescript": "^2.3.4"
   },
   "scripts": {
-    "test": "tsc && electron test.js"
+    "test": "tsc && tslint --project tsconfig.json && electron test.js"
   },
   "repository": {
     "type": "git",
