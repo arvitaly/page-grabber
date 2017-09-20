@@ -13,6 +13,7 @@ declare namespace PageGrabber {
     export function html(): string;
     export function val(): string;
     export function attr(name: string): string;
+    export function prop(name: string): string;
     export function css(name: string): string;
     export function hasClass(name: string): boolean;
     export function obj<T extends { [index: string]: any }>(path: string, obj: T): T;

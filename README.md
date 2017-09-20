@@ -10,6 +10,7 @@ Util for grab data from web-page. Grabber take schema for data and look Window-t
     var sel = grabber.sel; //Set context for selector
     var val = grabber.val; //Get value of input element //el.value
     var attr = grabber.attr; //Get attribute value
+    var prop = grabber.prop; //Get property value
     var css = grabber.attr; //Get computed style
     var hasClass = grabber.hasClass //check if class exists in class="...class1..."//boolean
     var text = grabber.text; //Get textContent value

@@ -1,5 +1,5 @@
 export const sel: Sel = (selector: string, obj: any) => {
-    return { $$$gp: { m: "_sel", selector, obj } };
+    return { $$$gp: { m: "_sel", selector, obj } } as any;
 };
 export const child: Child = (index: any, obj: any) => {
     return { $$$gp: { m: "_child", index, obj } };
@@ -12,6 +12,9 @@ export const html: Html = () => {
 };
 export const attr: Attr = (name: string) => {
     return { $$$gp: { m: "_attr", name } } as any;
+};
+export const prop: Attr = (name: string) => {
+    return { $$$gp: { m: "_prop", name } } as any;
 };
 export const val: Val = () => {
     return { $$$gp: { m: "_val" } } as any;

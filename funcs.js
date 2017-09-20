@@ -15,6 +15,9 @@ exports.html = function () {
 exports.attr = function (name) {
     return { $$$gp: { m: "_attr", name: name } };
 };
+exports.prop = function (name) {
+    return { $$$gp: { m: "_prop", name: name } };
+};
 exports.val = function () {
     return { $$$gp: { m: "_val" } };
 };

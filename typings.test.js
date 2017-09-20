@@ -17,6 +17,7 @@ if (x4) {
 var x5 = typings_1.nextUntil("selector", "selector2", ".dub", typings_1.sel(".actorInfo .name>a", [{
         href: typings_1.attr("href"),
         text: typings_1.text(),
+        p: typings_1.prop(""),
     }]));
 if (x5) {
     x5[0].href.toLocaleLowerCase();

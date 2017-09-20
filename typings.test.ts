@@ -1,4 +1,4 @@
-import { attr, child, css, hasClass, html, nextUntil, obj, sel, text, val } from "./typings";
+import { attr, child, css, hasClass, html, nextUntil, obj, prop, sel, text, val } from "./typings";
 
 const x1 = attr("11").toLowerCase();
 const x2 = sel("sel", { id: 1 });
@@ -16,6 +16,7 @@ if (x4) {
 const x5 = nextUntil(`selector`, "selector2", ".dub", sel(".actorInfo .name>a", [{
     href: attr("href"),
     text: text(),
+    p: prop(""),
 }]));
 if (x5) {
     x5[0].href.toLocaleLowerCase();

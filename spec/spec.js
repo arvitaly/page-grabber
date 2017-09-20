@@ -8,6 +8,7 @@ module.exports = (window) => {
     var css = Grabber.css;
     var hasClass = Grabber.hasClass;
     var attr = Grabber.attr;
+    var prop = Grabber.prop;
     var text = Grabber.text;
     var obj = Grabber.obj;
     var child = Grabber.child;
@@ -18,6 +19,7 @@ module.exports = (window) => {
             posts: sel("#ul > li > a", [{
                 text: child(0, text()),
                 link: attr("href"),
+                prop1: prop("prop1"),
                 display: css("display"),
                 active: hasClass("active"),
                 smallText: sel("span", text()),

@@ -44,6 +44,7 @@ var m = function (window) {
 
     grabber.observe = function (obj, onNewData, convert) {
         var data
+
         function check() {
             var newData = grab(obj);
             if (convert) {
@@ -59,6 +60,7 @@ var m = function (window) {
                 //TODO
             }
         }
+
         function tick() {
             setTimeout(check, 10);
         }
@@ -120,6 +122,10 @@ var m = function (window) {
         var name = args.name;
         return el.getAttribute(name);
     }
+    grabber._prop = function (args, el) {
+        var name = args.name;
+        return el[name];
+    }    
     grabber._hasClass = function (args, el) {
         var name = args.name;
         return strip(el.getAttribute("class")).indexOf(name) > -1;
@@ -150,7 +156,7 @@ var m = function (window) {
         }
         if (_.isArray(obj)) {
             var values = [];
-            var els = grabber.$(selector, context);// context.querySelectorAll(selector);
+            var els = grabber.$(selector, context); // context.querySelectorAll(selector);
             for (var i = 0; i < els.length; i++) {
                 values.push(grab(obj[0], els[i]))
             }
@@ -163,7 +169,7 @@ var m = function (window) {
             return grab(obj, el);
         }
     }
-    grabber._nextUntil = function(args, context){
+    grabber._nextUntil = function (args, context) {
         var startSelector = args.startSelector;
         var obj = args.obj;
         if (!context) {
@@ -176,12 +182,12 @@ var m = function (window) {
         var stopEl = grabber.$(startSelector + " ~ " + args.stopSelector, context)[0];
         var allEls = [];
         while (nextEl = nextEl.nextSibling) {
-            if (stopEl === nextEl){
+            if (stopEl === nextEl) {
                 break;
             }
             allEls.push(nextEl);
         }
-        els = grabber.$(startSelector + " ~ " + args.selector, context, null, allEls );
+        els = grabber.$(startSelector + " ~ " + args.selector, context, null, allEls);
         if (_.isArray(obj)) {
             var values = [];
             for (var i = 0; i < els.length; i++) {
@@ -213,6 +219,7 @@ var m = function (window) {
 
         return obj;
     }
+
     function grabObj(obj, el) {
         var value = {};
         for (var fieldName in obj) {
@@ -224,7 +231,7 @@ var m = function (window) {
     grabber.grab = grab;
     return grabber;
 }
-for(var funcName in funcs){
+for (var funcName in funcs) {
     m[funcName] = funcs[funcName];
 }
 

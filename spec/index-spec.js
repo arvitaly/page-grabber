@@ -38,7 +38,8 @@ describe("dom grabber", () => {
                         display: "block",
                         active: true,
                         smallText: "test18",
-                        inputValue: null
+                        inputValue: null,
+                        prop1: "prop1Value",
                     },
                     {
                         text: "text1",
@@ -46,7 +47,8 @@ describe("dom grabber", () => {
                         active: false,
                         "display": "inline",
                         smallText: null,
-                        inputValue: "inpval1"
+                        inputValue: "inpval1",
+                        prop1: "prop1Value",
                     }
                 ]
             });
@@ -68,7 +70,8 @@ describe("dom grabber", () => {
                             active: true,
                             "link": "link3",
                             smallText: "test20",
-                            inputValue: null
+                            inputValue: null,
+                            prop1: "prop1Value",
                         },
                         {
                             text: "text1",
@@ -76,7 +79,8 @@ describe("dom grabber", () => {
                             display: "inline",
                             "link": "link5",
                             smallText: null,
-                            inputValue: "inpval1"
+                            inputValue: "inpval1",
+                            prop1: "prop1Value",
                         }]
                 });
                 done();
