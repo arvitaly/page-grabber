@@ -27,5 +27,6 @@ declare function PageGrabber(window: Window): {
     observe: (obj: PageGrabber.GrabberO, onNewData: (data: any) => any, convert?: Function) => void;
     model: (models: { [index: string]: PageGrabber.GrabberO }, converts?: { [index: string]: Function }) => PageGrabber.IModel;
     grab: <T>(obj: T, el: any) => T;
+    $: (sel: string, context?: any) => HTMLElement[];
 }
 export = PageGrabber;

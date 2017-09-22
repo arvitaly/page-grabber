@@ -1,4 +1,9 @@
-import { attr, child, css, hasClass, html, nextUntil, obj, prop, sel, text, val } from "./typings";
+import {
+    attr, child, css, hasClass, html, nextUntil, obj, prop, sel, text, val,
+} from "./typings";
+import Grabber = require("./typings");
+
+const x = Grabber({} as any).$("sel", {})[0].innerHTML;
 
 const x1 = attr("11").toLowerCase();
 const x2 = sel("sel", { id: 1 });
