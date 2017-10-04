@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Sizzle = require("./sizzle");
 var _ = require("lodash");
 __export(require("./funcs"));
-var Grabber = /** @class */ (function () {
+var Grabber = (function () {
     function Grabber(w) {
         this.window = w ? w : window;
         this.$ = Sizzle(this.window);
@@ -55,7 +55,8 @@ var Grabber = /** @class */ (function () {
         }
         check();
     };
-    Grabber.prototype.grab = function (obj, el) {
+    Grabber.prototype.grab = function (o, el) {
+        var obj = o;
         if (obj && obj.$$$gp) {
             return this[obj.$$$gp.m.substr(1)](obj.$$$gp, el);
         }

@@ -52,12 +52,13 @@ export class Grabber {
         }
         check();
     }
-    public grab(obj: any, el?: any) {
+    public grab<T>(o: T, el?: any): T {
+        const obj = o as any;
         if (obj && obj.$$$gp) {
             return (this as any)[obj.$$$gp.m.substr(1)](obj.$$$gp, el);
         }
         if (_.isPlainObject(obj)) {
-            return this.grabObj(obj, el);
+            return this.grabObj(obj, el) as any;
         }
         if (_.isFunction(obj)) {
             return obj(el);
@@ -231,6 +232,9 @@ export class Grabber {
         }
         return res;
     }
+}
+export interface IGrabber {
+    grab<T>(o: T, el?: any): T | Promise<T>;
 }
 export function getSimpleValue(val: any) {
     if (_.isNil(val)) {
