@@ -129,7 +129,7 @@ class Grabber {
         const name = args.name;
         return el.style[name] || (this.window.getComputedStyle(el) as any)[name];
     }
-    protected val(_: {}, el: any) {
+    protected val(__: {}, el: any) {
         return el.value;
     }
     protected attr$(args: { name: string }, el: any) {
@@ -152,11 +152,11 @@ class Grabber {
     protected hasClass(args: { name: string }, el: any) {
         return strip(el.getAttribute("class")).indexOf(args.name) > -1;
     }
-    protected text(_: {}, el: HTMLElement) {
+    protected text(__: {}, el: HTMLElement) {
         return el.innerText === undefined ?
             (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
     }
-    protected html(_: {}, el: HTMLElement) {
+    protected html(__: {}, el: HTMLElement) {
         return el.innerHTML;
     }
     protected child(args: { index: number; obj: any }, context: any) {

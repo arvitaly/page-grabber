@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Sizzle = require("./sizzle");
 var _ = require("lodash");
 __export(require("./funcs"));
-var Grabber = (function () {
+var Grabber = /** @class */ (function () {
     function Grabber(w) {
         this.window = w ? w : window;
         this.$ = Sizzle(this.window);
@@ -136,7 +136,7 @@ var Grabber = (function () {
         var name = args.name;
         return el.style[name] || this.window.getComputedStyle(el)[name];
     };
-    Grabber.prototype.val = function (_, el) {
+    Grabber.prototype.val = function (__, el) {
         return el.value;
     };
     Grabber.prototype.attr$ = function (args, el) {
@@ -159,11 +159,11 @@ var Grabber = (function () {
     Grabber.prototype.hasClass = function (args, el) {
         return strip(el.getAttribute("class")).indexOf(args.name) > -1;
     };
-    Grabber.prototype.text = function (_, el) {
+    Grabber.prototype.text = function (__, el) {
         return el.innerText === undefined ?
             (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
     };
-    Grabber.prototype.html = function (_, el) {
+    Grabber.prototype.html = function (__, el) {
         return el.innerHTML;
     };
     Grabber.prototype.child = function (args, context) {

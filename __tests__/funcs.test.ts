@@ -1,14 +1,14 @@
 import { JSDOM } from "jsdom";
-import Grabber from "./../";
-import {
+
+import Grabber, {
     attr, attr$, child, child$,
     css, hasClass, html,
     nextUntil, nextUntil$, obj, prop, sel,
     sel$, text, val,
 } from "./../";
 const w = new JSDOM(`<div id="root"></div>`).window;
-function setHtml(html: string) {
-    (w.document.querySelector("#root") as HTMLElement).innerHTML = html;
+function setHtml(h: string) {
+    (w.document.querySelector("#root") as HTMLElement).innerHTML = h;
 }
 const grabber = Grabber(w);
 it("if obj is function, should call it", () => {
@@ -69,7 +69,7 @@ it("prop should return property of element", () => {
 });
 it("nextUntil should return element by startSelector, endSelector, selector", () => {
     // See more https://api.jquery.com/nextUntil/
-    const html = `<dl>
+    const h = `<dl>
         <dt id="term-1">term 1</dt>
         <dd>definition 1-a</dd>
         <dd>definition 1-b</dd>
@@ -83,7 +83,7 @@ it("nextUntil should return element by startSelector, endSelector, selector", ()
         <dd>definition 3-a</dd>
         <dd>definition 3-b</dd>
     </dl>`;
-    setHtml(html);
+    setHtml(h);
     expect(grabber.grab(nextUntil("#term-2", "#term-3", "dd", [text()]))).toEqual(
         ["definition 2-a", "definition 2-b", "definition 2-c"],
     );

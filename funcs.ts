@@ -1,14 +1,14 @@
-export const sel: Sel = (selector: string, obj: any) => {
-    return { $$$gp: { m: "_sel", selector, obj } } as any;
+export const sel: Sel = (selector: string, o: any) => {
+    return { $$$gp: { m: "_sel", selector, obj: o } } as any;
 };
-export const sel$: Sel$ = (selector: string, obj: any) => {
-    return { $$$gp: { m: "_sel$", selector, obj } } as any;
+export const sel$: Sel$ = (selector: string, o: any) => {
+    return { $$$gp: { m: "_sel$", selector, obj: o } } as any;
 };
-export const child: Child = (index: any, obj: any) => {
-    return { $$$gp: { m: "_child", index, obj } };
+export const child: Child = (index: any, o: any) => {
+    return { $$$gp: { m: "_child", index, obj: o } };
 };
-export const child$: Child = (index: any, obj: any) => {
-    return { $$$gp: { m: "_child$", index, obj } };
+export const child$: Child = (index: any, o: any) => {
+    return { $$$gp: { m: "_child$", index, obj: o } };
 };
 export const text: Text = () => {
     return { $$$gp: { m: "_text" } } as any;
@@ -34,11 +34,11 @@ export const css: Css = (name: string) => {
 export const hasClass: HasClass = (name: string) => {
     return { $$$gp: { m: "_hasClass", name } } as any;
 };
-export const nextUntil: NextUntil = (startSelector: string, stopSelector: string, selector: string, obj: any) => {
-    return { $$$gp: { m: "_nextUntil", startSelector, stopSelector, selector, obj } } as any;
+export const nextUntil: NextUntil = (startSelector: string, stopSelector: string, selector: string, o: any) => {
+    return { $$$gp: { m: "_nextUntil", startSelector, stopSelector, selector, obj: o } } as any;
 };
-export const nextUntil$: NextUntil$ = (startSelector: string, stopSelector: string, selector: string, obj: any) => {
-    return { $$$gp: { m: "_nextUntil$", startSelector, stopSelector, selector, obj } } as any;
+export const nextUntil$: NextUntil$ = (startSelector: string, stopSelector: string, selector: string, o: any) => {
+    return { $$$gp: { m: "_nextUntil$", startSelector, stopSelector, selector, obj: o } } as any;
 };
 export const obj: Obj = ((path: string, o: any) => {
     return { $$$gp: { m: "_obj", path, obj: o } } as any;

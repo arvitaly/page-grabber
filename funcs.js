@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sel = function (selector, obj) {
-    return { $$$gp: { m: "_sel", selector: selector, obj: obj } };
+exports.sel = function (selector, o) {
+    return { $$$gp: { m: "_sel", selector: selector, obj: o } };
 };
-exports.sel$ = function (selector, obj) {
-    return { $$$gp: { m: "_sel$", selector: selector, obj: obj } };
+exports.sel$ = function (selector, o) {
+    return { $$$gp: { m: "_sel$", selector: selector, obj: o } };
 };
-exports.child = function (index, obj) {
-    return { $$$gp: { m: "_child", index: index, obj: obj } };
+exports.child = function (index, o) {
+    return { $$$gp: { m: "_child", index: index, obj: o } };
 };
-exports.child$ = function (index, obj) {
-    return { $$$gp: { m: "_child$", index: index, obj: obj } };
+exports.child$ = function (index, o) {
+    return { $$$gp: { m: "_child$", index: index, obj: o } };
 };
 exports.text = function () {
     return { $$$gp: { m: "_text" } };
@@ -36,11 +36,11 @@ exports.css = function (name) {
 exports.hasClass = function (name) {
     return { $$$gp: { m: "_hasClass", name: name } };
 };
-exports.nextUntil = function (startSelector, stopSelector, selector, obj) {
-    return { $$$gp: { m: "_nextUntil", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: obj } };
+exports.nextUntil = function (startSelector, stopSelector, selector, o) {
+    return { $$$gp: { m: "_nextUntil", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: o } };
 };
-exports.nextUntil$ = function (startSelector, stopSelector, selector, obj) {
-    return { $$$gp: { m: "_nextUntil$", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: obj } };
+exports.nextUntil$ = function (startSelector, stopSelector, selector, o) {
+    return { $$$gp: { m: "_nextUntil$", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: o } };
 };
 exports.obj = (function (path, o) {
     return { $$$gp: { m: "_obj", path: path, obj: o } };
