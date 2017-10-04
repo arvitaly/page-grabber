@@ -9,7 +9,9 @@ Util for grab data from web-page
 
     npm install page-grabber --save
 
-    or yarn add page-grabber
+    or 
+    
+    yarn add page-grabber
 
 ## Usage
 
