@@ -3,18 +3,29 @@
   "version": "0.3.27",
   "description": "Util for grab data from web-page",
   "main": "index.js",
-  "typings": "typings.d.ts",
+  "typings": "index.d.ts",
   "dependencies": {
+    "@types/lodash": "^4.14.77",
     "lodash": "^4.15.0",
     "tslint": "^5.4.3"
   },
   "devDependencies": {
+    "@types/jest": "^21.1.2",
+    "@types/jsdom": "^11.0.2",
     "@types/node": "^7.0.12",
     "jasmine": "2.5.3",
+    "jest": "^21.2.1",
+    "jsdom": "^11.3.0",
     "typescript": "^2.3.4"
   },
   "scripts": {
-    "test": "tsc && tslint --project tsconfig.json && electron test.js"
+    "test": "tsc && tslint --project tsconfig.json && jest --coverage --verbose"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/(*.)(spec|test).js?(x)"
+    ],
+    "coveragePathIgnorePatterns": ["/node_modules/", "sizzle.js"]
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,11 @@
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-var Sizzle = require("./sizzle");
-var _ = require("lodash");
-__export(require("./funcs"));
-var Grabber = (function () {
-    function Grabber(w) {
+const Sizzle = require("./sizzle");
+import _ = require("lodash");
+export * from "./funcs";
+
+class Grabber {
+    public $: any;
+    public window: Window;
+    constructor(w?: Window) {
         this.window = w ? w : window;
         this.$ = Sizzle(this.window);
     }
@@ -32,15 +30,14 @@ var Grabber = (function () {
             },
         };
     }*/
-    Grabber.prototype.observe = function (obj, onNewData, convert) {
-        var _this = this;
-        var data;
-        var check = function () {
-            var newData = _this.grab(obj);
+    public observe(obj: any, onNewData: any, convert?: any) {
+        let data: any;
+        const check = () => {
+            let newData = this.grab(obj);
             if (convert) {
                 newData = convert(newData);
             }
-            var j = JSON.stringify(newData);
+            const j = JSON.stringify(newData);
             if (JSON.stringify(data) !== j) {
                 data = newData;
                 onNewData(JSON.parse(j));
@@ -54,10 +51,10 @@ var Grabber = (function () {
             setTimeout(check, 10);
         }
         check();
-    };
-    Grabber.prototype.grab = function (obj, el) {
+    }
+    public grab(obj: any, el?: any) {
         if (obj && obj.$$$gp) {
-            return this[obj.$$$gp.m.substr(1)](obj.$$$gp, el);
+            return (this as any)[obj.$$$gp.m.substr(1)](obj.$$$gp, el);
         }
         if (_.isPlainObject(obj)) {
             return this.grabObj(obj, el);
@@ -66,133 +63,136 @@ var Grabber = (function () {
             return obj(el);
         }
         return obj;
-    };
-    Grabber.prototype.obj = function (args, context) {
-        var _this = this;
-        var path = args.path;
-        var obj = args.obj;
+    }
+    protected obj(args: { path: string; obj: any }, context: any) {
+        const path = args.path;
+        const obj = args.obj;
         if (!context) {
             context = this.window;
         }
         context = _.get(context, path);
+
         if (!context) {
             return null;
         }
         if (_.isArray(obj)) {
             if (_.isArray(context)) {
                 if (obj.length > 0) {
-                    return context.map(function (value) { return _this.grab(obj[0], value); });
-                }
-                else {
-                    return context.map(function (value) { return getSimpleValue(value); });
+                    return context.map((value) => this.grab(obj[0], value));
+                } else {
+                    return context.map((value) => getSimpleValue(value));
                 }
             }
-        }
-        else {
+        } else {
             if (obj) {
                 return this.grab(obj, context);
             }
             return getSimpleValue(context);
         }
-    };
-    Grabber.prototype.grabObj = function (obj, el) {
-        var value = {};
-        for (var fieldName in obj) {
+    }
+    protected grabObj(obj: any, el: any) {
+        const value: { [index: string]: any } = {};
+        for (const fieldName in obj) {
             value[fieldName] = this.grab(obj[fieldName], el);
         }
         return value;
-    };
-    Grabber.prototype.sel = function (args, context) {
-        var selector = args.selector;
-        var obj = args.obj;
+    }
+    protected sel(args: { selector: string; obj: any }, context: any) {
+        const selector = args.selector;
+        const obj = args.obj;
         if (!context) {
             context = this.window.document;
         }
         if (_.isArray(obj)) {
-            var values = [];
-            var els = this.$(selector, context);
-            for (var _i = 0, els_1 = els; _i < els_1.length; _i++) {
-                var el = els_1[_i];
+            const values = [];
+            const els = this.$(selector, context);
+            for (const el of els) {
                 values.push(this.grab(obj[0], el));
             }
             return values;
-        }
-        else {
-            var el = this.$(selector, context)[0];
+        } else {
+            const el = this.$(selector, context)[0];
             if (!el) {
                 return null;
             }
             return this.grab(obj, el);
         }
-    };
-    Grabber.prototype.sel$ = function (args, context) {
-        var res = this.sel(args, context);
+    }
+    protected sel$(args: { selector: string; obj: any }, context: any) {
+        const res = this.sel(args, context);
         if (res === null) {
             throw new Error("Not found element by selector " + args.selector);
         }
         return res;
-    };
-    Grabber.prototype.css = function (args, el) {
-        var name = args.name;
-        return el.style[name] || this.window.getComputedStyle(el)[name];
-    };
-    Grabber.prototype.val = function (_, el) {
+    }
+    protected css(args: { name: string }, el: any) {
+        const name = args.name;
+        return el.style[name] || (this.window.getComputedStyle(el) as any)[name];
+    }
+    protected val(_: {}, el: any) {
         return el.value;
-    };
-    Grabber.prototype.attr$ = function (args, el) {
-        var res = this.attr(args, el);
+    }
+    protected attr$(args: { name: string }, el: any) {
+        const res = this.attr(args, el);
         if (res === null) {
             throw new Error("Attribute `" + args.name + "` should be non-empty");
         }
         return res;
-    };
-    Grabber.prototype.attr = function (args, el) {
-        var res = el.getAttribute(args.name);
+    }
+    protected attr(args: { name: string }, el: any) {
+        const res = el.getAttribute(args.name);
         if (res === "") {
             return null;
         }
         return res;
-    };
-    Grabber.prototype.prop = function (args, el) {
+    }
+    protected prop(args: { name: string }, el: any) {
         return el[args.name];
-    };
-    Grabber.prototype.hasClass = function (args, el) {
+    }
+    protected hasClass(args: { name: string }, el: any) {
         return strip(el.getAttribute("class")).indexOf(args.name) > -1;
-    };
-    Grabber.prototype.text = function (_, el) {
+    }
+    protected text(_: {}, el: HTMLElement) {
         return el.innerText === undefined ?
             (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
-    };
-    Grabber.prototype.html = function (_, el) {
+    }
+    protected html(_: {}, el: HTMLElement) {
         return el.innerHTML;
-    };
-    Grabber.prototype.child = function (args, context) {
-        var index = args.index;
-        var obj = args.obj;
+    }
+    protected child(args: { index: number; obj: any }, context: any) {
+        const index = args.index;
+        const obj = args.obj;
         if (context.childNodes.length === 0 || !context.childNodes[index]) {
             return null;
         }
         return this.grab(obj, context.childNodes[index]);
-    };
-    Grabber.prototype.child$ = function (args, context) {
-        var res = this.child(args, context);
+    }
+    protected child$(args: { index: number; obj: any }, context: any) {
+        const res = this.child(args, context);
         if (res === null) {
             throw new Error("Not found element by index " + args.index);
         }
         return res;
-    };
-    Grabber.prototype.nextUntil = function (args, context) {
-        var startSelector = args.startSelector;
-        var obj = args.obj;
+    }
+    protected nextUntil(
+        args: {
+            startSelector: string;
+            selector: string;
+            obj: any; stopSelector: string
+        },
+        context: any,
+    ) {
+        const startSelector = args.startSelector;
+        const obj = args.obj;
         if (!context) {
             context = this.window.document;
         }
-        var nextEl = this.$(startSelector)[0];
+        let nextEl = this.$(startSelector)[0];
         if (!nextEl) {
             return null;
         }
-        var stopEl = this.$(startSelector + " ~ " + args.stopSelector, context)[0];
-        var allEls = [];
+        const stopEl = this.$(startSelector + " ~ " + args.stopSelector, context)[0];
+        const allEls = [];
         // tslint:disable-next-line:no-conditional-assignment
         while (nextEl = nextEl.nextSibling) {
             if (stopEl === nextEl) {
@@ -200,35 +200,39 @@ var Grabber = (function () {
             }
             allEls.push(nextEl);
         }
-        var els = this.$(startSelector + " ~ " + args.selector, context, null, allEls);
+        const els = this.$(startSelector + " ~ " + args.selector, context, null, allEls);
         if (_.isArray(obj)) {
-            var values = [];
-            for (var _i = 0, els_2 = els; _i < els_2.length; _i++) {
-                var el = els_2[_i];
+            const values = [];
+            for (const el of els) {
                 values.push(this.grab(obj[0], el));
             }
             return values;
-        }
-        else {
-            var el = els[0];
+        } else {
+            const el = els[0];
             if (!el) {
                 return null;
             }
             return this.grab(obj, el);
         }
-    };
-    Grabber.prototype.nextUntil$ = function (args, context) {
-        var res = this.nextUntil(args, context);
+    }
+    protected nextUntil$(
+        args: {
+            startSelector: string;
+            selector: string;
+            obj: any; stopSelector: string
+        },
+        context: any,
+    ) {
+        const res = this.nextUntil(args, context);
         if (res === null) {
             throw new Error("Not found element by selector " + args.selector +
                 ", start selector " + args.startSelector
                 + ", stop selector " + args.stopSelector);
         }
         return res;
-    };
-    return Grabber;
-}());
-function getSimpleValue(val) {
+    }
+}
+export function getSimpleValue(val: any) {
     if (_.isNil(val)) {
         return null;
     }
@@ -237,10 +241,8 @@ function getSimpleValue(val) {
     }
     return val;
 }
-exports.getSimpleValue = getSimpleValue;
-function strip(value) {
-    var rhtmlSpace = /[\x20\t\r\n\f]+/g;
+export function strip(value: string) {
+    const rhtmlSpace = /[\x20\t\r\n\f]+/g;
     return (" " + value + " ").replace(rhtmlSpace, " ").slice(1, -1);
 }
-exports.strip = strip;
-exports.default = function (window) { return new Grabber(window); };
+export default (window: Window) => new Grabber(window);

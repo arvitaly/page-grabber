@@ -3,8 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sel = function (selector, obj) {
     return { $$$gp: { m: "_sel", selector: selector, obj: obj } };
 };
+exports.sel$ = function (selector, obj) {
+    return { $$$gp: { m: "_sel$", selector: selector, obj: obj } };
+};
 exports.child = function (index, obj) {
     return { $$$gp: { m: "_child", index: index, obj: obj } };
+};
+exports.child$ = function (index, obj) {
+    return { $$$gp: { m: "_child$", index: index, obj: obj } };
 };
 exports.text = function () {
     return { $$$gp: { m: "_text" } };
@@ -14,6 +20,9 @@ exports.html = function () {
 };
 exports.attr = function (name) {
     return { $$$gp: { m: "_attr", name: name } };
+};
+exports.attr$ = function (name) {
+    return { $$$gp: { m: "_attr$", name: name } };
 };
 exports.prop = function (name) {
     return { $$$gp: { m: "_prop", name: name } };
@@ -29,6 +38,9 @@ exports.hasClass = function (name) {
 };
 exports.nextUntil = function (startSelector, stopSelector, selector, obj) {
     return { $$$gp: { m: "_nextUntil", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: obj } };
+};
+exports.nextUntil$ = function (startSelector, stopSelector, selector, obj) {
+    return { $$$gp: { m: "_nextUntil$", startSelector: startSelector, stopSelector: stopSelector, selector: selector, obj: obj } };
 };
 exports.obj = (function (path, o) {
     return { $$$gp: { m: "_obj", path: path, obj: o } };
