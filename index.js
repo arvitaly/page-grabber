@@ -228,6 +228,7 @@ var Grabber = /** @class */ (function () {
     };
     return Grabber;
 }());
+exports.Grabber = Grabber;
 function getSimpleValue(val) {
     if (_.isNil(val)) {
         return null;

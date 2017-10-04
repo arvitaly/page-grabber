@@ -2,7 +2,7 @@ const Sizzle = require("./sizzle");
 import _ = require("lodash");
 export * from "./funcs";
 
-class Grabber {
+export class Grabber {
     public $: any;
     public window: Window;
     constructor(w?: Window) {
