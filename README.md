@@ -1,39 +1,59 @@
-# page-grabber [![Build Status](https://travis-ci.org/arvitaly/page-grabber.svg?branch=master)](https://travis-ci.org/arvitaly/page-grabber)
+# page-grabber
 
-Util for grab data from web-page. Grabber take schema for data and look Window-tree by it. 
+Util for grab data from web-page
 
-# Example observe
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-    var grabber = require('page-grabber')(window);
+## Install
 
-    //Helpers for create data schema
-    var sel = grabber.sel; //Set context for selector
-    var val = grabber.val; //Get value of input element //el.value
-    var attr = grabber.attr; //Get attribute value
-    var prop = grabber.prop; //Get property value
-    var css = grabber.attr; //Get computed style
-    var hasClass = grabber.hasClass //check if class exists in class="...class1..."//boolean
-    var text = grabber.text; //Get textContent value
-    var obj = grabber.obj; //Set context for JS-object
-    var child = grabber.child; //Set context for childNodes by index
-    ////////////////////////////////
-    var model = grabber.model({
-        posts: sel("#ul > li > a", [{
-            text: child(0, text()),
-            display: css("display"),
-            active: hasClass("active"),
-            link: attr("href"),
-            smallText: sel("span", text())
+    npm install page-grabber --save
+
+    or yarn add page-grabber
+
+## Usage
+
+    import { JSDOM } from "jsdom";
+    import createGrabber, { attr$, html, sel$, text } from "page-grabber";
+
+    const h = `
+        <div id="div1">
+            <ul>
+                <li><a href="link1">Title1</a><span><b>Content1</b></span></li>
+                <li><a href="link2">Titl2</a><span><b>Content2</b></span></li>
+            </ul>
+        </div>
+    `;
+    const window = new JSDOM(h).window;
+    const grabber = createGrabber(window);
+    const res = grabber.grab(sel$("#div1", {
+        items: sel$("ul>li", [{
+            title: sel$("a", text()),
+            link: sel$("a", attr$("href")),
+            content: sel$("span", html()),
         }]),
-        data1: obj("test1", {
-            data: obj("data", [{
-                val: obj("test5")
-            }])
-        })
-    })
-    model.on("posts", (data)=>{
-        console.log("posts", data);
-    })
-    model.on("data1", (data)=>{
-        console.log("data1", data);
-    })    
+    }));
+    for (const item of res.items) {
+        console.log("title: ", item.title, "content: " + item.content);
+        // title:  Title1 content: <b>Content1</b>
+        // title:  Titl2 content: <b>Content2</b>
+    }
+
+## API
+
+    attr(name: string) => string | null - get attribute by name
+    attr$(name: string) => string - get attribute by name with check for non-empty
+
+## Test
+
+    npm install
+    npm test
+
+[npm-image]: https://badge.fury.io/js/page-grabber.svg
+[npm-url]: https://npmjs.org/package/page-grabber
+[travis-image]: https://travis-ci.org/arvitaly/page-grabber.svg?branch=master
+[travis-url]: https://travis-ci.org/arvitaly/page-grabber
+[daviddm-image]: https://david-dm.org/arvitaly/page-grabber.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/arvitaly/page-grabber
+[coveralls-image]: https://coveralls.io/repos/arvitaly/page-grabber/badge.svg
+[coveralls-url]: https://coveralls.io/r/arvitaly/page-grabber

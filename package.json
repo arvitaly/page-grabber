@@ -7,16 +7,17 @@
   "dependencies": {
     "@types/lodash": "^4.14.77",
     "lodash": "^4.15.0",
-    "tslint": "^5.4.3"
+    "tslint": "^5.7.0"
   },
   "devDependencies": {
     "@types/jest": "^21.1.2",
     "@types/jsdom": "^11.0.2",
     "@types/node": "^7.0.12",
+    "coveralls": "^3.0.0",
     "jasmine": "2.5.3",
     "jest": "^21.2.1",
     "jsdom": "^11.3.0",
-    "typescript": "^2.3.4"
+    "typescript": "^2.5.3"
   },
   "scripts": {
     "test": "tsc && tslint --project tsconfig.json && jest --coverage --verbose"
@@ -25,7 +26,10 @@
     "testMatch": [
       "**/__tests__/(*.)(spec|test).js?(x)"
     ],
-    "coveragePathIgnorePatterns": ["/node_modules/", "sizzle.js"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "sizzle.js"
+    ]
   },
   "repository": {
     "type": "git",
