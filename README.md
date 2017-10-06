@@ -15,6 +15,7 @@ Util for grab data from web-page
 
 ## Usage
 
+    ```typescript
     import { JSDOM } from "jsdom";
     import createGrabber, { attr$, html, sel$, text } from "page-grabber";
 
@@ -40,6 +41,7 @@ Util for grab data from web-page
         // title:  Title1 content: <b>Content1</b>
         // title:  Titl2 content: <b>Content2</b>
     }
+    ```
 
 ## API
 
