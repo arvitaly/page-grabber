@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Sizzle = require("./sizzle");
 var _ = require("lodash");
 __export(require("./funcs"));
-var Grabber = (function () {
+var Grabber = /** @class */ (function () {
     function Grabber(w) {
         this.window = w ? w : window;
         this.$ = Sizzle(this.window);
