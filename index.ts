@@ -154,8 +154,11 @@ export class Grabber {
         return strip(el.getAttribute("class")).indexOf(args.name) > -1;
     }
     protected text(__: {}, el: HTMLElement) {
-        return el.innerText === undefined ?
-            (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
+        return el.innerText === undefined
+            ? el.textContent === undefined
+                ? el.innerHTML.toString()
+                : el.textContent
+            : el.innerText;
     }
     protected html(__: {}, el: HTMLElement) {
         return el.innerHTML;
@@ -179,7 +182,8 @@ export class Grabber {
         args: {
             startSelector: string;
             selector: string;
-            obj: any; stopSelector: string
+            obj: any;
+            stopSelector: string;
         },
         context: any,
     ) {
@@ -195,7 +199,7 @@ export class Grabber {
         const stopEl = this.$(startSelector + " ~ " + args.stopSelector, context)[0];
         const allEls = [];
         // tslint:disable-next-line:no-conditional-assignment
-        while (nextEl = nextEl.nextSibling) {
+        while ((nextEl = nextEl.nextSibling)) {
             if (stopEl === nextEl) {
                 break;
             }
@@ -220,15 +224,21 @@ export class Grabber {
         args: {
             startSelector: string;
             selector: string;
-            obj: any; stopSelector: string
+            obj: any;
+            stopSelector: string;
         },
         context: any,
     ) {
         const res = this.nextUntil(args, context);
         if (res === null) {
-            throw new Error("Not found element by selector " + args.selector +
-                ", start selector " + args.startSelector
-                + ", stop selector " + args.stopSelector);
+            throw new Error(
+                "Not found element by selector " +
+                    args.selector +
+                    ", start selector " +
+                    args.startSelector +
+                    ", stop selector " +
+                    args.stopSelector,
+            );
         }
         return res;
     }

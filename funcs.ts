@@ -56,4 +56,4 @@ type Val = () => string;
 type Attr = (name: string) => string;
 type Css = (name: string) => string;
 type HasClass = (name: string) => boolean;
-type Obj = <T extends ObjType>(path: string, obj?: T) => T | ((path: string) => any);
+type Obj = <T extends ObjType>(path: string, obj?: T) => T;

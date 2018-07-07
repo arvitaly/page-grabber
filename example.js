@@ -6,11 +6,13 @@ var h = "\n    <div id=\"div1\">\n        <ul>\n            <li><a href=\"link1\
 var window = new jsdom_1.JSDOM(h).window;
 var grabber = _1.default(window);
 var res = grabber.grab(_1.sel$("#div1", {
-    items: _1.sel$("ul>li", [{
+    items: _1.sel$("ul>li", [
+        {
             title: _1.sel$("a", _1.text()),
             link: _1.sel$("a", _1.attr$("href")),
             content: _1.sel$("span", _1.html()),
-        }]),
+        },
+    ]),
 }));
 for (var _i = 0, _a = res.items; _i < _a.length; _i++) {
     var item = _a[_i];

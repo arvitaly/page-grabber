@@ -161,8 +161,11 @@ var Grabber = /** @class */ (function () {
         return strip(el.getAttribute("class")).indexOf(args.name) > -1;
     };
     Grabber.prototype.text = function (__, el) {
-        return el.innerText === undefined ?
-            (el.textContent === undefined ? el.innerHTML.toString() : el.textContent) : el.innerText;
+        return el.innerText === undefined
+            ? el.textContent === undefined
+                ? el.innerHTML.toString()
+                : el.textContent
+            : el.innerText;
     };
     Grabber.prototype.html = function (__, el) {
         return el.innerHTML;
@@ -195,7 +198,7 @@ var Grabber = /** @class */ (function () {
         var stopEl = this.$(startSelector + " ~ " + args.stopSelector, context)[0];
         var allEls = [];
         // tslint:disable-next-line:no-conditional-assignment
-        while (nextEl = nextEl.nextSibling) {
+        while ((nextEl = nextEl.nextSibling)) {
             if (stopEl === nextEl) {
                 break;
             }
@@ -221,9 +224,12 @@ var Grabber = /** @class */ (function () {
     Grabber.prototype.nextUntil$ = function (args, context) {
         var res = this.nextUntil(args, context);
         if (res === null) {
-            throw new Error("Not found element by selector " + args.selector +
-                ", start selector " + args.startSelector
-                + ", stop selector " + args.stopSelector);
+            throw new Error("Not found element by selector " +
+                args.selector +
+                ", start selector " +
+                args.startSelector +
+                ", stop selector " +
+                args.stopSelector);
         }
         return res;
     };
@@ -245,4 +251,4 @@ function strip(value) {
     return (" " + value + " ").replace(rhtmlSpace, " ").slice(1, -1);
 }
 exports.strip = strip;
-exports.default = function (window) { return new Grabber(window); };
+exports.default = (function (window) { return new Grabber(window); });
