@@ -22,7 +22,7 @@ export const attr: Attr = (name: string) => {
 export const attr$: Attr = (name: string) => {
     return { $$$gp: { m: "_attr$", name } } as any;
 };
-export const prop: Attr = (name: string) => {
+export const prop: Prop = (name: string) => {
     return { $$$gp: { m: "_prop", name } } as any;
 };
 export const val: Val = () => {
@@ -53,6 +53,7 @@ type Child = (index: number, el: any) => any;
 type Text = () => string;
 type Html = () => string;
 type Val = () => string;
+type Prop = (name: string) => any;
 type Attr = (name: string) => string;
 type Css = (name: string) => string;
 type HasClass = (name: string) => boolean;
